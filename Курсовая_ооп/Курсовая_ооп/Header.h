@@ -7,6 +7,7 @@
 #include <ctime>
 #include <conio.h>
 #include <Windows.h>
+#include <conio.h>
 
 using namespace std;
 
@@ -59,7 +60,8 @@ protected:
 	char *street;
 	int houseNumber;
 	int flat;
-
+	char key[20];
+	int houseNumberFind;
 public:
 	Client() {
 		this->street = nullptr;
@@ -76,5 +78,39 @@ public:
 	void ShowClientList();
 	void ClientDelete();
 	friend void DelClientMessage();
+	void FindClientByName();
+	void FindClientBySurname();
+	void FindClientByAdress();
+	void SaveClientInf();
+	void DownloadClientInf();
+	void EditClientInfo();
+	void SortName(bool(*predicate));
 };
 
+//класс заказов
+class Order:public Client {
+private:
+	Order *firstOrd;
+	Order *lastOrd;
+	Order *next;
+protected:
+	char *orderName;
+	int orderCode;
+	int clientCode;
+	int OrderCost;
+	int DeliveryCost;
+	//int dateOfOrder;
+public:
+	Order() {
+		this->orderName = nullptr;
+		this->orderCode = NULL;
+		this->clientCode = NULL;
+		this->OrderCost = NULL;
+		this->DeliveryCost = NULL;
+	}
+	~Order() {
+		delete orderName;
+	}
+	void setOrderInf();
+	void getOrderInf();
+};
